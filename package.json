@@ -1,0 +1,27 @@
+{
+  "name": "serre-connectee",
+  "version": "1.0.0",
+  "description": "Repo pour l'API de gestion de la serre connectée",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JougyStyle/serre-connectee.git"
+  },
+  "author": "Johann GUITTET",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JougyStyle/serre-connectee/issues"
+  },
+  "homepage": "https://github.com/JougyStyle/serre-connectee#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3",
+    "supertest": "^3.1.0"
+  }
+}

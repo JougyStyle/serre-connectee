@@ -18,6 +18,21 @@ consumes:
 produces:
   - application/json
 paths:
+  /:
+    x-swagger-router-controller: index
+    get:
+      description: list elements to provide to the user based on criteria provided
+      operationId: ping
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Pong"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /demo:
     x-swagger-router-controller: demo
     get:
@@ -39,6 +54,8 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  Pong:
+    type: string
   SuccessResponse:
     type: object
   ErrorResponse:

@@ -151,10 +151,7 @@ interface IGithubHookHeaders {
   'x-hub-signature': string;
 }
 
-module.exports = {
-  push,
-  getCurrentVersion,
-};
+module.exports = { push, getCurrentVersion };
 
 function push(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('github webhook triggered !');

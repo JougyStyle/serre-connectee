@@ -8,10 +8,7 @@ let currentGithubWebhookData = lastGithubWebhookData;
 if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
     console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
 }
-module.exports = {
-    push,
-    getCurrentVersion,
-};
+module.exports = { push, getCurrentVersion };
 function push(req, res) {
     console.log('github webhook triggered !');
     const githubEventInformation = req.swagger.params.webhookInformation.value;
@@ -66,18 +63,35 @@ function writeGithubWebhookInfo(object) {
 }
 function execCommand(command) {
     return new Promise((resolve, reject) => {
-        const { spawn } = require('child_process');
-        const bat = spawn('cmd.exe', ['/c', command]);
-        bat.stdout.on('data', (data) => {
-            console.log(data.toString());
-        });
-        bat.stderr.on('data', (data) => {
-            console.log(data.toString());
-        });
-        bat.on('exit', (code) => {
-            console.log(`Child exited with code ${code}`);
-            resolve();
-        });
+        if (process.platform === 'win32') {
+            const { spawn } = require('child_process');
+            const bat = spawn('cmd.exe', ['/c', command]);
+            bat.stdout.on('data', (data) => {
+                console.log(data.toString());
+            });
+            bat.stderr.on('data', (data) => {
+                console.log(data.toString());
+            });
+            bat.on('exit', (code) => {
+                console.log(`Child exited with code ${code}`);
+                resolve();
+            });
+        }
+        else {
+            const { exec } = require('child_process');
+            exec('git pull', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`exec error: ${error}`);
+                    reject(error);
+                    return;
+                }
+                else {
+                    console.log(`stdout: ${stdout}`);
+                    console.log(`stderr: ${stderr}`);
+                    resolve();
+                }
+            });
+        }
     });
 }
 //# sourceMappingURL=git.js.map

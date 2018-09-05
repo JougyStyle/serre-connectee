@@ -201,20 +201,35 @@ function writeGithubWebhookInfo(object: any) {
 }
 function execCommand(command: string) {
   return new Promise( (resolve, reject) => {
-    const { spawn } = require('child_process');
-    const bat = spawn('cmd.exe', ['/c', command]);
+    if (process.platform === 'win32') {
+      const { spawn } = require('child_process');
+      const bat = spawn('cmd.exe', ['/c', command]);
 
-    bat.stdout.on('data', (data: any) => {
-      console.log(data.toString());
-    });
+      bat.stdout.on('data', (data: any) => {
+        console.log(data.toString());
+      });
 
-    bat.stderr.on('data', (data: any) => {
-      console.log(data.toString());
-    });
+      bat.stderr.on('data', (data: any) => {
+        console.log(data.toString());
+      });
 
-    bat.on('exit', (code: any) => {
-      console.log(`Child exited with code ${code}`);
-      resolve();
-    });
+      bat.on('exit', (code: any) => {
+        console.log(`Child exited with code ${code}`);
+        resolve();
+      });
+    } else {
+      const { exec } = require('child_process');
+      exec('git pull', (error: any, stdout: any, stderr: any) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          reject(error);
+          return;
+        } else {
+          console.log(`stdout: ${stdout}`);
+          console.log(`stderr: ${stderr}`);
+          resolve();
+        }
+      });
+    }
   });
 }

@@ -203,7 +203,7 @@ function restartNode() {
 
 function writeGithubWebhookInfo(object: any) {
   return new Promise( (resolve, reject) => {
-    fs.writeFile('lastGithubWebhookData.json', object, 'utf8', (err, res) => {
+    fs.writeFile('lastGithubWebhookData.json', JSON.stringify(object), 'utf8', (err, res) => {
       if (err) { reject(err); } else { resolve(res); }
     });
   });

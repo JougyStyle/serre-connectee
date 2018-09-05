@@ -1,6 +1,14 @@
 'use strict';
+import * as fs from 'fs';
 import { ISwaggerRequest, ISwaggerResponse } from '../../interfaces';
+import * as lastGithubWebhookData from './../../../../lastGithubWebhookData.json';
+import * as packageJSON from './../../../../package.json';
 
+console.log('current version : ' + packageJSON.version);
+const currentGithubWebhookData: IGithubHookContent = lastGithubWebhookData;
+if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
+  console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
+}
 // Des exemples de requêtes sont présentés dans la documentation de GitHub
 interface IGithubHookContent {
   ref: string;
@@ -162,13 +170,61 @@ function push(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('content: ');
   console.log(JSON.stringify(githubEventInformation, null, 4));
 
-  const response = {received: true};
-  if (!res.headersSent) { return res.status(200).json(response); }
+
+  writeGithubWebhookInfo(githubEventInformation)
+  .then( () => {
+    const response = {received: true};
+    if (!res.headersSent) { return res.status(200).json(response); }
+  });
 }
 
 function getCurrentVersion(req: ISwaggerRequest, res: ISwaggerResponse) {
-  console.log('current version requested !');
+  console.log('current version requested ! restart ongoing');
   const answer = {version: 'vDTC'};
 
-  if (!res.headersSent) { return res.status(200).json(answer); }
+  if (!res.headersSent) { res.status(200).json(answer); }
+  execCommand('git pull')
+  .then( () => console.log('done !'));
+  // restartNode();
+  return;
+}
+
+function restartNode() {
+  console.log('restart !');
+  process.on('exit', () => {
+    require('child_process').spawn(process.argv.shift(), process.argv, {
+        cwd: process.cwd(),
+        detached : true,
+        stdio: 'inherit',
+    });
+  });
+  process.exit();
+}
+
+function writeGithubWebhookInfo(object: any) {
+  return new Promise( (resolve, reject) => {
+    fs.writeFile('lastGithubWebhookData.json', object, 'utf8', (err, res) => {
+      if (err) { reject(err); } else { resolve(res); }
+    });
+  });
+}
+
+function execCommand(command: string) {
+  return new Promise( (resolve, reject) => {
+    const { spawn } = require('child_process');
+    const bat = spawn('cmd.exe', ['/c', command]);
+
+    bat.stdout.on('data', (data: any) => {
+      console.log(data.toString());
+    });
+
+    bat.stderr.on('data', (data: any) => {
+      console.log(data.toString());
+    });
+
+    bat.on('exit', (code: any) => {
+      console.log(`Child exited with code ${code}`);
+      resolve();
+    });
+  })
 }

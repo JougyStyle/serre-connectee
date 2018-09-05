@@ -1,5 +1,13 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs = require("fs");
+const lastGithubWebhookData = require("./../../../../lastGithubWebhookData.json");
+const packageJSON = require("./../../../../package.json");
+console.log('current version : ' + packageJSON.version);
+const currentGithubWebhookData = lastGithubWebhookData;
+if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
+    console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
+}
 module.exports = {
     push,
     getCurrentVersion,
@@ -16,16 +24,62 @@ function push(req, res) {
     // - branch:  githubEvent.ref (refs/heads/master)
     console.log('content: ');
     console.log(JSON.stringify(githubEventInformation, null, 4));
-    const response = { received: true };
-    if (!res.headersSent) {
-        return res.status(200).json(response);
-    }
+    writeGithubWebhookInfo(githubEventInformation)
+        .then(() => {
+        const response = { received: true };
+        if (!res.headersSent) {
+            return res.status(200).json(response);
+        }
+    });
 }
 function getCurrentVersion(req, res) {
-    console.log('current version requested !');
+    console.log('current version requested ! restart ongoing');
     const answer = { version: 'vDTC' };
     if (!res.headersSent) {
-        return res.status(200).json(answer);
+        res.status(200).json(answer);
     }
+    execCommand('git pull')
+        .then(() => console.log('done !'));
+    // restartNode();
+    return;
+}
+function restartNode() {
+    console.log('restart !');
+    process.on('exit', () => {
+        require('child_process').spawn(process.argv.shift(), process.argv, {
+            cwd: process.cwd(),
+            detached: true,
+            stdio: 'inherit',
+        });
+    });
+    process.exit();
+}
+function writeGithubWebhookInfo(object) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('lastGithubWebhookData.json', object, 'utf8', (err, res) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(res);
+            }
+        });
+    });
+}
+function execCommand(command) {
+    return new Promise((resolve, reject) => {
+        const { spawn } = require('child_process');
+        const bat = spawn('cmd.exe', ['/c', command]);
+        bat.stdout.on('data', (data) => {
+            console.log(data.toString());
+        });
+        bat.stderr.on('data', (data) => {
+            console.log(data.toString());
+        });
+        bat.on('exit', (code) => {
+            console.log(`Child exited with code ${code}`);
+            resolve();
+        });
+    });
 }
 //# sourceMappingURL=git.js.map

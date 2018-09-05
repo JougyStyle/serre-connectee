@@ -196,7 +196,6 @@ function restartNode() {
   });
   process.exit();
 }
-
 function writeGithubWebhookInfo(object: any) {
   currentGithubWebhookData = object;
   return new Promise( (resolve, reject) => {
@@ -205,7 +204,6 @@ function writeGithubWebhookInfo(object: any) {
     });
   });
 }
-
 function execCommand(command: string) {
   return new Promise( (resolve, reject) => {
     const { spawn } = require('child_process');

@@ -6,6 +6,7 @@ module.exports = {
 };
 function push(req, res) {
     console.log('github webhook triggered !');
+    console.log(req);
     const githubEvent = req.body;
     // - githubEvent.head_commit is the last (and frequently the only) commit
     // - githubEvent.pusher is the user of the pusher pusher.name and pusher.email

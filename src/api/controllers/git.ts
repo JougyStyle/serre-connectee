@@ -140,6 +140,7 @@ module.exports = {
 
 function push(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('github webhook triggered !');
+  console.log(req);
   const githubEvent: IGithubHookContent = req.body;
   // - githubEvent.head_commit is the last (and frequently the only) commit
   // - githubEvent.pusher is the user of the pusher pusher.name and pusher.email

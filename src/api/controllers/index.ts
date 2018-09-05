@@ -1,11 +1,10 @@
 'use strict';
-
-import { Request, Response } from 'express';
+import { ISwaggerRequest, ISwaggerResponse } from '../../interfaces';
 
 module.exports = {
   ping,
 };
 
-function ping(req, res) {
+function ping(req: ISwaggerRequest, res: ISwaggerResponse) {
   if (!res.headersSent) { return res.status(200).json('pong'); }
 }

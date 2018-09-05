@@ -33,6 +33,34 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /git/update:
+    x-swagger-router-controller: git
+    get:
+      description: return current version of code base
+      operationId: getCurrentVersion
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/CodeBaseVersion"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: api endpoint for github to allow branch sync
+      operationId: update
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/CodeBaseVersion"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /demo:
     x-swagger-router-controller: demo
     get:
@@ -59,6 +87,8 @@ definitions:
   SuccessResponse:
     type: object
   ErrorResponse:
+    type: object
+  CodeBaseVersion:
     type: object
 # define reusable parameters:
 parameters:

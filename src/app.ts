@@ -7,7 +7,7 @@ import http from 'http';
 import * as SwaggerExpress from 'swagger-express-mw';
 import * as swaggerUI from 'swagger-ui-express';
 
-const port = process.env.PORT || 10010;
+const port = process.env.PORT || 80;
 
 // trigger
 app.use(cors());

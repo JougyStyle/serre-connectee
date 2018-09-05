@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const SwaggerExpress = require("swagger-express-mw");
 const swaggerUI = require("swagger-ui-express");
-const port = process.env.PORT || 10010;
+const port = process.env.PORT || 80;
 // trigger
 app.use(cors());
 /**

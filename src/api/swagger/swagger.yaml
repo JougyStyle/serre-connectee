@@ -51,6 +51,13 @@ paths:
     post:
       description: api endpoint for github to allow branch sync
       operationId: push
+      parameters:
+        - name: webhookInformation
+          in: body
+          description: contain Github webhook information
+          required: true
+          schema:
+            $ref: "#/definitions/webhookInformation"
       responses:
         "200":
           description: Success
@@ -89,6 +96,8 @@ definitions:
   ErrorResponse:
     type: object
   CodeBaseVersion:
+    type: object
+  webhookInformation:
     type: object
 # define reusable parameters:
 parameters:

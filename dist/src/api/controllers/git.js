@@ -4,7 +4,7 @@ const fs = require("fs");
 const lastGithubWebhookData = require("./../../../../lastGithubWebhookData.json");
 const packageJSON = require("./../../../../package.json");
 console.log('current version : ' + packageJSON.version);
-const currentGithubWebhookData = lastGithubWebhookData;
+let currentGithubWebhookData = lastGithubWebhookData;
 if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
     console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
 }
@@ -25,12 +25,14 @@ function push(req, res) {
     console.log('content: ');
     console.log(JSON.stringify(githubEventInformation, null, 4));
     writeGithubWebhookInfo(githubEventInformation)
+        .then(() => execCommand('git pull')
+        .then(() => console.log('done !'))
         .then(() => {
         const response = { received: true };
         if (!res.headersSent) {
             return res.status(200).json(response);
         }
-    });
+    }));
 }
 function getCurrentVersion(req, res) {
     console.log('current version requested ! restart ongoing');
@@ -55,13 +57,14 @@ function restartNode() {
     process.exit();
 }
 function writeGithubWebhookInfo(object) {
+    currentGithubWebhookData = object;
     return new Promise((resolve, reject) => {
-        fs.writeFile('lastGithubWebhookData.json', JSON.stringify(object), 'utf8', (err, res) => {
+        fs.writeFile('lastGithubWebhookData.json', JSON.stringify(object), 'utf8', (err) => {
             if (err) {
                 reject(err);
             }
             else {
-                resolve(res);
+                resolve();
             }
         });
     });

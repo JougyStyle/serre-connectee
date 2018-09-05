@@ -5,7 +5,7 @@ import * as lastGithubWebhookData from './../../../../lastGithubWebhookData.json
 import * as packageJSON from './../../../../package.json';
 
 console.log('current version : ' + packageJSON.version);
-const currentGithubWebhookData: IGithubHookContent = lastGithubWebhookData;
+let currentGithubWebhookData: IGithubHookContent = lastGithubWebhookData;
 if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
   console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
 }
@@ -170,8 +170,9 @@ function push(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('content: ');
   console.log(JSON.stringify(githubEventInformation, null, 4));
 
-
   writeGithubWebhookInfo(githubEventInformation)
+  .then( () => execCommand('git pull')
+  .then( () => console.log('done !'))
   .then( () => {
     const response = {received: true};
     if (!res.headersSent) { return res.status(200).json(response); }
@@ -202,9 +203,10 @@ function restartNode() {
 }
 
 function writeGithubWebhookInfo(object: any) {
+  currentGithubWebhookData = object;
   return new Promise( (resolve, reject) => {
-    fs.writeFile('lastGithubWebhookData.json', JSON.stringify(object), 'utf8', (err, res) => {
-      if (err) { reject(err); } else { resolve(res); }
+    fs.writeFile('lastGithubWebhookData.json', JSON.stringify(object), 'utf8', (err: NodeJS.ErrnoException) => {
+      if (err) { reject(err); } else { resolve(); }
     });
   });
 }
@@ -226,5 +228,5 @@ function execCommand(command: string) {
       console.log(`Child exited with code ${code}`);
       resolve();
     });
-  })
+  });
 }

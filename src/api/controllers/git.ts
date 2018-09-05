@@ -158,21 +158,16 @@ module.exports = {
 
 function push(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('github webhook triggered !');
-  console.log('headers: ');
-  console.log(JSON.stringify(req.headers, null, 4));
-  console.log('\n\n\n');
   const githubEventInformation: IGithubHookContent = req.swagger.params.webhookInformation.value;
   // - githubEvent.head_commit is the last (and frequently the only) commit
   // - githubEvent.pusher is the user of the pusher pusher.name and pusher.email
   // - timestamp of final commit: githubEvent.head_commit.timestamp
   // - branch:  githubEvent.ref (refs/heads/master)
 
-  console.log('content: ');
-  console.log(JSON.stringify(githubEventInformation, null, 4));
-
-  writeGithubWebhookInfo(githubEventInformation)
-  .then( () => execCommand('git pull')
-  .then( () => console.log('done !'))
+  execCommand('git pull')
+  .then( () => console.log('source récupérée !'))
+  .then( () => writeGithubWebhookInfo(githubEventInformation))
+  .then( () => console.log('dernières informations enregistrées !'))
   .then( () => {
     const response = {received: true};
     if (!res.headersSent) { return res.status(200).json(response); }
@@ -181,7 +176,7 @@ function push(req: ISwaggerRequest, res: ISwaggerResponse) {
 
 function getCurrentVersion(req: ISwaggerRequest, res: ISwaggerResponse) {
   console.log('current version requested ! restart ongoing');
-  const answer = {version: 'vDTC'};
+  const answer = {version: currentGithubWebhookData.commits[0].timestamp};
 
   if (!res.headersSent) { res.status(200).json(answer); }
   execCommand('git pull')

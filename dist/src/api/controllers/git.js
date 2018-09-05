@@ -23,23 +23,22 @@ function push(req, res) {
         .then(() => console.log('source récupérée !'))
         .then(() => writeGithubWebhookInfo(githubEventInformation))
         .then(() => console.log('dernières informations enregistrées !'))
+        .then(() => console.log('dernières informations enregistrées !'))
         .then(() => {
         const response = { received: true };
         if (!res.headersSent) {
-            return res.status(200).json(response);
+            res.status(200).json(response);
         }
+        return restartNode();
     });
 }
 function getCurrentVersion(req, res) {
-    console.log('current version requested ! restart ongoing');
-    const answer = { version: currentGithubWebhookData.commits[0].timestamp };
+    const lastV = currentGithubWebhookData.commits[0].timestamp;
+    console.log('current version requested : ' + lastV);
+    const answer = { version: lastV };
     if (!res.headersSent) {
-        res.status(200).json(answer);
+        return res.status(200).json(answer);
     }
-    execCommand('git pull')
-        .then(() => console.log('done !'));
-    // restartNode();
-    return;
 }
 function restartNode() {
     console.log('restart !');

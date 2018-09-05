@@ -1,0 +1,13 @@
+{
+  "name": "Buddiz",
+  "short_name": "Buddiz",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/buddiz.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#21cc98",
+  "theme_color": "#21cc98"
+}

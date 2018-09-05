@@ -1,0 +1,74 @@
+/* AppComponent's private CSS styles */
+.page-container { width: 100%; height: 100%; position: relative; overflow: hidden;}
+
+h1 {
+  font-size: 1.2em;
+  color: #999;
+  margin-bottom: 0;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  // min-height: 200px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  color: white;
+  background: #1f4453;
+  background: linear-gradient(-45deg, #1f4453 0%, #1F4453 100%);
+  line-height: 1.5em;
+  .copyright { font-size: x-large; font-weight: bold; }
+  .version { font-weight: normal; font-style: italic; font-size: 75%; color: #9d9d9d; padding-bottom: 10px; }
+  a { color: white; text-decoration: none; }
+}
+
+.strong {
+  font-weight: bold;
+  color: var(--bdz-primary-color);
+}
+
+.iframe-container {
+  position: fixed;
+  top: 0px; left: 0px; bottom: 0px; right: 0px;
+  display: flex; justify-content: space-around; align-items: center;
+  opacity: 0;
+  transition: opacity 500ms;
+  background: rgba( black, 0.3);
+  z-index: 100;
+
+
+  iframe {
+    max-width: 500px; max-height: 500px;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  @media screen and (max-width: 768px) {
+    iframe {
+      max-width: none; max-height: none;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: var(--bdz-warning-color);
+    color: white;
+  }
+}
+
+.show-iframe {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; // Il faut détecter les clicks sur le backdrop pour pouvoir dismiss le modal
+}
+.hide-iframe {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

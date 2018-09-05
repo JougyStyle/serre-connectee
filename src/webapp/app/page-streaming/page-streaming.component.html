@@ -1,0 +1,85 @@
+<div class="landing">
+  <div class="slogan">
+    <h1 class="header">
+      <div>Un film pour ce soir&nbsp;?</div>
+      <p>Ca pourrait être... <span class="highlight"><app-auto-updating-text [charChangeTimer]="50" [stringChangeTimer]="1000" [availableValues]="['Casse-tête chinois', 'Forest Gump', 'Seul sur Mars']"></app-auto-updating-text></span></p>
+    </h1>
+    <hr class="intro-divider">
+    <a href="https://app.buddiz.io/%23/home/vstreaming"><h3 class="redirect">Essayez Buddiz&nbsp;!<img alt="logo de buddiz" src="assets/buddiz_white.png"/></h3></a>
+  </div>
+</div>
+<app-padded-container class="section killer-features">
+  <p>Soirée canapé&nbsp;?<br/><span class="reverse-highlight">Trouvez le bon film&nbsp;!</span></p>
+  <div class="informations">
+    <div class="info">
+      <img class="logo" alt="icone montrant la diversité des catalogues de Buddiz" src="assets/eye.svg"/>
+      <div class="explanation">
+        <div class="title">Découvrez les catalogues différemment</div>
+        <div class="description">Amazon Prime, Netflix, Canal Play, OCS... On vous propose une autre expérience pour découvrir leur contenu&nbsp;!</div>
+      </div>
+    </div>
+    <div class="info">
+      <img class="logo" alt="icone montrant que les critiques sont accessibles facilement sur Buddiz" src="assets/critics.svg"/>
+      <div class="explanation">
+        <div class="title">Accédez facilement aux critiques</div>
+        <div class="description">Télérama, Le monde, etc... Ils sont tous à portée de clic&nbsp;!</div>
+      </div>
+    </div>
+    <div class="info">
+      <img class="logo" alt="icone expliquant que Buddiz adapte le programme à l'humeur du moment"src="assets/mood.svg"/>
+      <div class="explanation">
+        <div class="title">Adaptez le programme à votre humeur</div>
+        <div class="description">Forest Gump, Casse-tête chinois ou Seul sur mars&nbsp;? Que des bons films... Mais lequel pour ce soir&nbsp;?</div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="info small-feature">
+    <img class="logo" alt="icone montrant la fonctionnalité sociale de Buddiz" src="assets/join.svg"/>
+    <div class="explanation">
+      <div class="description">Vous êtes plusieurs&nbsp;? Pas de problème : invitez tout le monde dans la recherche, et c'est parti</div>
+    </div>
+  </div>
+  
+</app-padded-container>
+<app-padded-container class="section pros">
+  <h2>Faites un choix éclairé</h2>  
+  <div class="informations">
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone expliquant que différents filtres peuvent s'appliquer sur Buddiz" src="assets/remote-control.svg"/>
+        <div>
+          <div class="title">Des envies particulières&nbsp;?</div>
+          <div class="description">Durée, année de sortie, catégorie, etc. Appliquez nos filtres&nbsp;!</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone montrant qu'il est possible de voir le trailer directement sur Buddiz" src="assets/video-player.svg"/>
+        <div>
+          <div class="title">De quoi ça parle&nbsp;?</div>
+          <div class="description">Lis le synopsis ou regarde le trailer sur Buddiz.</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone indiquant que Buddiz aggrège des sources variées pour fournir les informations nécessaires à un choix éclairé" src="assets/review.svg"/>
+        <div>
+          <div class="title">Qu'en pensent les autres&nbsp;?</div>
+          <div class="description">Ne perds plus ton temps sur Google : l'essentiel des critiques directement dans Buddiz&nbsp;!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>Un exemple de fiche de film ici : <span class="strong" (click)="openSampleElement()">{{sample.params.name}}</span></p>
+</app-padded-container>
+<app-padded-container class="section">
+  <h2>Comment ça fonctionne&nbsp;?</h2>
+  <app-how-to></app-how-to>
+</app-padded-container>
+<app-padded-container class="section">
+    <h2>D'autres choix à faire&nbsp;?</h2>
+    <app-our-usecases [usecaseToHide]="['streaming']"></app-our-usecases>
+  </app-padded-container>

@@ -1,0 +1,15 @@
+<div class="page-container">
+  <router-outlet></router-outlet>
+</div>
+<div class="footer">
+  <div routerLink="/home" class="copyright">
+    <span class="brand"><span itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">Buddiz</span></span></span> &copy; 2018
+  </div>
+  <div class="version">version 02 juin 2018</div>
+  <a href="https://www.facebook.com/buddiz.io/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i> facebook</a>
+  <a href="https://www.infogreffe.fr/societes/entreprise-societe/823156476-buddiz-io-780116B039000000.html?typeProduitOnglet=EXTRAIT&afficherretour=false">Mentions légales</a>
+</div>
+<div class="iframe-container" *ngIf="pageLoaded" [ngClass]="{'show-iframe': showIframe, 'hide-iframe': !showIframe}" (click)="dismiss()">
+  <button (click)="dismiss()">X</button>
+  <iframe #appIframed id="app-iframed" [src]="iframeUrl | safe" onload="console.log('iframe loaded')"></iframe>
+</div>

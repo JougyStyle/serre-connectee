@@ -1,0 +1,73 @@
+.top-bar {
+  position: absolute;
+  top:0px; right: 0px; left: 0px;
+  height: 50px;
+  background-color: var(--bdz-primary-color);
+  display: flex; flex-direction: column; justify-content: space-around; align-items: center;
+  color: white;
+  font-weight: bold;
+  .invite-logo {
+    position: absolute;
+    top: 0px; bottom: 0px; right: 10px; height: 50px;
+    display: flex; flex-direction: column; justify-content: space-around; align-items: center;
+  }
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom:0px; right: 0px; left: 0px;
+  height: 50px;
+  background-color: var(--bdz-background-alt1-color);
+  display: flex; flex-direction: row; justify-content: space-around; flex-grow: 1; flex-basis: 100px;
+  .tab {
+    height: 100%;
+    width: 100%;
+    display: flex; flex-direction: row; justify-content: space-around; align-items: center;
+    .fake-tab {
+      height: 20px; width: 20px;
+      border-radius: 50%;
+      background-color: var(--bdz-primary-light-color);
+    }
+  }
+  .tab.active {
+    border-top: solid 2px var(--bdz-primary-color);
+    .fake-tab {
+      background-color: var(--bdz-primary-color);
+    }
+  }
+}
+
+.finger {
+  position: absolute;
+  top: 150px; left: 50px;
+  height: 30px; width: 30px;
+  border-radius: 50%;
+  background: rgba(black, 0.5);
+  border: solid 2px black;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  position: absolute;
+  top: 65px; bottom: 125px; left: 15px; right: 15px;
+  z-index: 2;
+  .card {
+    position: absolute;
+    top: 0px; bottom: 0px; left: 0px; right: 0px;
+    padding: 5px;
+    background-color: var(--bdz-background-alt2-color);
+    transform: scale(0);
+    display: flex; justify-content: space-around; flex-direction: column; align-items: center;
+    text-align: center;
+    div { opacity: 0; }
+  }
+}
+
+.buttons {
+  position: absolute;
+  bottom: 65px; left: 20px; right: 20px; height: 50px;
+  display: flex; justify-content: space-around; flex-direction: row;
+  div { width: 50px; height: 50px; border-radius: 50%; }
+  .like { background-color: var(--bdz-primary-color); }
+  .dislike { background-color: var(--bdz-warning-color); }
+}

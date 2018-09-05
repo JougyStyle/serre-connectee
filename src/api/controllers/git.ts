@@ -1,8 +1,8 @@
 'use strict';
 import * as fs from 'fs';
 import { ISwaggerRequest, ISwaggerResponse } from '../../interfaces';
-import * as lastGithubWebhookData from './../../../../lastGithubWebhookData.json';
-import * as packageJSON from './../../../../package.json';
+import * as lastGithubWebhookData from './../../../../../lastGithubWebhookData.json';
+import * as packageJSON from './../../../../../package.json';
 
 console.log('current version : ' + packageJSON.version);
 let currentGithubWebhookData: IGithubHookContent = lastGithubWebhookData;
@@ -153,7 +153,7 @@ interface IGithubHookHeaders {
 
 module.exports = {
   push,
-  getCurrentVersion
+  getCurrentVersion,
 };
 
 function push(req: ISwaggerRequest, res: ISwaggerResponse) {

@@ -1,0 +1,117 @@
+<div class="landing">
+  <a class="bdz-logo-link" href="https://buddiz.io"><img class="bdz-logo" alt="logo de buddiz en blanc" src="assets/buddiz_white.png"/></a>
+  <div class="slogan">
+    <h1 class="header">
+      <span class="highlight"><app-auto-updating-text [charChangeTimer]="35" [stringChangeTimer]="700" [availableValues]="availableValues"></app-auto-updating-text></span>
+      <p>Fille&nbsp;? Garçon&nbsp;? Les deux*&nbsp;?</p>
+      <p>Pas toujours facile de choisir un prénom&nbsp;!</p>
+    </h1>
+    <hr class="intro-divider">
+    <a href="https://app.buddiz.io/%23/home/firstName"><h3 class="redirect">Essayez Buddiz&nbsp;!<img alt="logo de buddiz" src="assets/buddiz_white.png"/></h3></a>
+    <span class="joke">* bon courage&nbsp;!</span>
+  </div>
+</div>
+<app-padded-container class="section killer-features">
+  <p>Vous attendez un heureux évènement&nbsp;?<br/><span class="reverse-highlight">Choisir un prénom ne sera pas une galère&nbsp;!</span></p>
+  <div class="informations">
+    <div class="info">
+      <img class="logo" alt="icone montrant la fonctionnalité sociale de Buddiz" src="assets/join.svg"/>
+      <div class="explanation">
+        <div class="title">Retrouvez-vous sur Buddiz</div>
+        <div class="description">Pas d'inscription, tu crées ta recherche en un clic et tu partages le lien avec ton.ta partenaire&nbsp;! #EcritureInclusive</div>
+      </div>
+    </div>
+    <div class="info">
+      <img class="logo" alt="icone expliquant que Buddiz ses suggestions à vos envies" src="assets/inspire.svg"/>
+      <div class="explanation">
+        <div class="title">Créez votre univers</div>
+        <div class="description">Marre de voir toujours les mêmes prénoms sur les listes&nbsp;? Retenez et retrouvez uniquement ceux qui vous plaisent&nbsp;!</div>
+      </div>
+    </div>
+    <div class="info">
+      <img class="logo" alt="icone expliquant la fonctionnalité de vote" src="assets/vote.svg"/>
+      <div class="explanation">
+        <div class="title">Exprimez vos préférences</div>
+        <div class="description">Des goûts très différents&nbsp;? Trouvez votre terrain d'entente grâce à Buddiz.</div>
+      </div>
+    </div>
+    <div class="info">
+      <img class="logo" alt="icone indiquant que Buddiz permet de suivre les scores en live" src="assets/result.svg"/>
+      <div class="explanation">
+        <div class="title">Rencontrez le prénom de votre enfant</div>
+        <div class="description">Vous pouvez même le voir évoluer en live&nbsp;! Buddiz, ou l'échographie du prénom</div>
+      </div>
+    </div>
+  </div>
+</app-padded-container>
+<app-padded-container class="section pros">
+  <h2>Faites un choix éclairé</h2>  
+  <div class="informations">
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone indiquant que Buddiz fournit les stastiques des prénoms" src="assets/fish.svg"/>
+        <div class="explanation">
+          <div class="title">Evitez le prénom trop donné</div>
+          <!-- <div class="description"></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone indiquant que Buddiz donne l'étymologie des prénoms" src="assets/chest.svg"/>
+        <div class="explanation">
+          <div class="title">Découvrez le sens caché d'un prénom</div>
+          <!-- <div class="description">Toto</div> -->
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone indiquant que Buddiz raconte l'histoire des prénoms" src="assets/amphora.svg"/>
+        <div class="explanation">
+          <div class="title">Apprenez-en plus sur l'histoire des prénoms</div>
+          <!-- <div class="description">Toto</div> -->
+        </div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="info">
+        <img class="logo" alt="icone indiquant que Buddiz donne des exemples de personnes célères ayant porté les prénoms proposés" src="assets/crown.svg"/>
+        <div class="explanation">
+          <div class="title">Mais qui a porté ce prénom&nbsp;?</div>
+          <!-- <div class="description">Toto</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="spacer">Un exemple de fiche de prénom ici : <span class="strong" (click)="openSampleElement()">{{sample.params.name}}</span></p>
+</app-padded-container>
+<app-padded-container class="section">
+  <h2>Comment ça fonctionne&nbsp;?</h2>
+  <app-how-to></app-how-to>
+</app-padded-container>
+<app-padded-container class="section">
+  <h2>Ce qu'en disent les autres parents</h2>
+  <div class="quotation">
+    <p>
+      J'ai appris que j'allais être papa quelques mois après le début de l'aventure Buddiz. 
+      Autant dire que j'avais déjà un certains nombre de sujets en tête... J'avais du mal à avoir de l'inspiration, du coup j'ai consulté des sites de prénoms entre deux métros.
+      En réalité, ça ne servait pas à grand chose : d'une fois sur l'autre, j'avais oublié les grandes idées, et à chaque fois que je recommençais la recherche, 
+      j'en revenais toujours au même point : des listes interminables et que j'avais déjà lue. Et quand on en discutait avec ma copine, passé ceux qu'on aimait vraiment mais que 
+      l'autre n'aimait pas, difficile de se souvenir des "pas-parfaits-mais-après-tout-pourquoi-pas".
+    </p>
+    <p>
+      Buddiz avait la vocation d'être un outil pour qu'un groupe se mette d'accord sur un resto... Un groupe, ça peut être un couple, un resto, ça peut aussi bien être un bébé 
+      (attention, l'anthropophagie est un crime, et c'est un peu dégueu aussi, <a class="strong" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=dL5pCgK40pA"> quoi qu'en disent certains</a>).
+    </p>
+    <p>
+      Une première version de l'outil existait déjà : ne restait plus qu'à l'adapter. <span class="strong">Quelques heures de travail plus tard, j'avais un outil qui me proposait des prénoms avec les 
+        informations qui m'intéressaient, qui me permettait à tout moment de reprendre ma liste et de la modifier, et sur lequel on pouvait facilement échanger en tout discrétion avec ma copine</span>. Et quelques jours plus tard, le prénom était trouvé. And the rest is history...
+      </p>
+      <div class="author">Johann, papa comblé</div>
+    </div>
+  </app-padded-container>
+  <app-padded-container class="section">
+    <h2>D'autres choix à faire&nbsp;?</h2>
+    <app-our-usecases [usecaseToHide]="['prenom']"></app-our-usecases>
+  </app-padded-container>

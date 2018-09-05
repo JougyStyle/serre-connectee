@@ -1,0 +1,11 @@
+<div class="list-uc">
+  <div class="uc" routerLink="/streaming" *ngIf="usecaseToHide.indexOf('streaming')">
+    <img class="uc-logo"  alt="icone du cas d'usage [trouver un film ou une série] - noir" src="assets/streaming.svg"><span class="uc-title">Film et série</span>
+  </div>
+  <div class="uc" routerLink="/sortie" *ngIf="usecaseToHide.indexOf('sortie')">
+    <img class="uc-logo"  alt="icone du cas d'usage [trouver une idée de sortie avec ses amis] - noir" src="assets/resto.svg"><span class="uc-title">Restaurant</span>
+  </div>
+  <div class="uc" routerLink="/prenom" *ngIf="usecaseToHide.indexOf('prenom')">
+    <img class="uc-logo" alt="icone du cas d'usage [trouver un prénom] - noir" src="assets/prenom.svg"><span class="uc-title">Prénom</span>
+  </div>
+</div>

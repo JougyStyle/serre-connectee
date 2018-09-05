@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="features content left">
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.createSearch)" [ngClass]="{'active': activeFeature === EFeature.createSearch}">
+      <div class="feature-description">
+        <div class="feature-title">1. Créez une recherche</div>
+        <div class="feature-explanation">Rien de plus simple : un titre, quelques filtres si tu y tiens, et hop, c'est parti&nbsp;!</div>
+      </div>
+      <div class="test-arrow"></div>
+    </div>
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.getIdeas)"  [ngClass]="{'active': activeFeature === EFeature.getIdeas}">
+      <div class="feature-description">
+        <div class="feature-title">2. Ajoutez-y des idées</div>
+        <div class="feature-explanation">Buddiz propose, vous disposez. Et paf, quand vous êtes d'accord, ça matche&nbsp;!</div>
+      </div>
+      <div class="test-arrow"></div>
+    </div>
+  </div>
+  <div class="phone content">
+    <app-phone-layer id="phone-how-to">
+      <ng-container [ngSwitch]="activeFeature">
+        <!-- Les fonctionnalités de base -->
+        <app-tutorial-create-search class="full-container" *ngSwitchCase="'createSearch'" (animationEnd)="setFeature(EFeature.getIdeas)"></app-tutorial-create-search>
+        <app-tutorial-get-ideas class="full-container" *ngSwitchCase="'getIdeas'" (animationEnd)="setFeature(EFeature.giveOpinion)"></app-tutorial-get-ideas>
+        <app-tutorial-give-opinion class="full-container" *ngSwitchCase="'giveOpinion'" (animationEnd)="setFeature(EFeature.watchResults)"></app-tutorial-give-opinion>
+        <app-tutorial-watch-result class="full-container" *ngSwitchCase="'watchResults'" (animationEnd)="setFeature(EFeature.createSearch)"></app-tutorial-watch-result>
+        <!-- Les fonctionnalités bonus -->
+        <app-tutorial-get-information class="full-container" *ngSwitchCase="'getInformation'" (animationEnd)="setFeature(EFeature.giveOpinion)"></app-tutorial-get-information>
+        <app-tutorial-invite-people class="full-container" *ngSwitchCase="'invitePeople'" (animationEnd)="setFeature(EFeature.getIdeas)"></app-tutorial-invite-people>
+      </ng-container>
+    </app-phone-layer>
+  </div>
+  <div class="features content right">
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.giveOpinion)" [ngClass]="{'active': activeFeature === EFeature.giveOpinion}">
+      <div class="feature-description">
+        <div class="feature-title">3. Faîtes-les s'affronter</div>
+        <div class="feature-explanation">Votez sur une série de duels, et petit-à-petit des préférences émergent&nbsp;!</div>
+      </div>
+      <div class="test-arrow rotate-180"></div>
+    </div>
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.watchResults)" [ngClass]="{'active': activeFeature === EFeature.watchResults}">
+      <div class="feature-description">
+        <div class="feature-title">4. C'est prêt&nbsp;!</div>
+        <div class="feature-explanation">Regardez les résultats se mettre à jour en temps réel</div>
+      </div>
+      <div class="test-arrow rotate-180"></div>
+    </div>
+  </div>
+</div>
+<div class="container sub-container fifth-feature">
+  <div class="features content">
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.invitePeople)" [ngClass]="{'active': activeFeature === EFeature.invitePeople}">
+      <div class="feature-description">
+        <div class="feature-title">A tout moment, invitez des participants</div>
+        <div class="feature-explanation">Rejoindre la recherche est aussi simple que cliquer sur un lien. Générez-le en un clic et envoyez-le par Whatsapp, facebook, sms, mail...</div>
+      </div>
+      <div class="test-arrow rotate-270"></div>
+    </div>
+  </div>
+</div>
+<hr class="how-to-divider"><!-- Infos optionnelles -->
+<div class="container sub-container">
+  <div class="features content right">
+    <div class="feature" appScrollToSection [targetSection]="'#phone-how-to'" (click)="setFeature(EFeature.getInformation)" [ngClass]="{'active': activeFeature === EFeature.getInformation}">
+      <div class="feature-description">
+        <div class="feature-title">De nombreuses informations à portée de clic&nbsp;!</div>
+        <div class="feature-explanation">Pour chaque élément, nous regroupons des données issues de sources variées pour vous simplifier la vie. Plus la peine de multiplier les onglets&nbsp;!</div>
+      </div>
+    </div>
+  </div>
+</div>

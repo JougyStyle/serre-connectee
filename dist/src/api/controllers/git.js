@@ -1,14 +1,17 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
-const lastGithubWebhookData = require("./../../../../lastGithubWebhookData.json");
-const packageJSON = require("./../../../../package.json");
+const lastGithubWebhookData = require("./../../../../../lastGithubWebhookData.json");
+const packageJSON = require("./../../../../../package.json");
 console.log('current version : ' + packageJSON.version);
 let currentGithubWebhookData = lastGithubWebhookData;
 if (currentGithubWebhookData.commits && currentGithubWebhookData.commits[0] && currentGithubWebhookData.commits[0].timestamp) {
     console.log('La dernière version a été récupérée depuis Github, en date du : ' + currentGithubWebhookData.commits[0].timestamp);
 }
-module.exports = { push, getCurrentVersion };
+module.exports = {
+    push,
+    getCurrentVersion,
+};
 function push(req, res) {
     console.log('github webhook triggered !');
     const githubEventInformation = req.swagger.params.webhookInformation.value;

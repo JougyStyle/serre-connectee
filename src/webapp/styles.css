@@ -1,0 +1,86 @@
+/* Master Styles */
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 0px;
+  font-size: 16px;
+}
+body, input[text], button {
+  color: #424242;
+  font-family: Cambria, Georgia;
+}
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.full-container {
+  width: 100%;
+  height: 100%;;
+}
+
+
+.section { padding: 20px; }
+.section:nth-child(2n) { background: white; }
+.section:nth-child(2n+1) { background: #dfe0e0; }
+.section { padding: 20px; }
+.section h2 { text-align: center; }
+
+:root {
+  --bdz-background-main-color: 255, 255, 255;
+  --bdz-background-alt1-color: #f2f2f2;
+  --bdz-background-alt2-color: #d9d9d9;
+  
+  --bdz-txt-main-color: #424242;
+  --bdz-txt-alt1-color: white;
+  --bdz-txt-alt3-color: #cccccc;
+  
+  --bdz-border-main-color: black;
+  --bdz-border-alt1-color: white;
+  --bdz-border-alt3-color: #cccccc;
+  
+  --bdz-primary-color: #21cc98;
+  /* --bdz-primary-color: #137758; */
+  --bdz-primary-light-color: #b0f2de;
+  --bdz-primary-dark-color: #137758;
+  
+  --bdz-secondary-color: #d9d9d9;
+  --bdz-secondary-light-color: #f2f2f2;
+  --bdz-secondary-dark-color: #ccc;
+  
+  --bdz-warning-color: #c00000;
+  --bdz-warning-light-color: #ffb3b3;
+  --bdz-warning-dark-color: #660000;
+  
+  --bdz-info-color: #228dd3;
+}

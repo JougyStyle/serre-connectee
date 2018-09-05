@@ -1,0 +1,27 @@
+:host { display: block; }
+.list-uc {
+  display: flex; flex-direction: row; justify-content: space-around; flex-wrap: wrap;
+  max-width: 1170px;
+  width: 100%;
+  margin: auto;
+  .uc {
+    height: auto;
+    flex-basis: 100px; flex-grow: 0;
+    padding: 20px;
+    width: 100px;
+    cursor: pointer;
+    transition: transform 300ms;
+  }
+  .uc:hover {
+    transform: scale(1.1);
+  }
+  .uc-logo {
+    height: 100px;
+    display: block;
+  }
+  .uc-title {
+    height: 20px;
+    display: block;
+    text-align: center;
+  }
+}

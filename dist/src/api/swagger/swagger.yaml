@@ -33,7 +33,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /git/update:
+  /git/push:
     x-swagger-router-controller: git
     get:
       description: return current version of code base
@@ -50,7 +50,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     post:
       description: api endpoint for github to allow branch sync
-      operationId: update
+      operationId: push
       responses:
         "200":
           description: Success
